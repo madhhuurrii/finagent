@@ -120,7 +120,11 @@ IP Address: {data['ip']}
 Device Type: {data['device_type']}
 Login Attempt: {data['login_attempt']}
 """
-
+# Amount: {data['amount']}
+# Location (State): {data['location']}
+# IP Address: {data['ip']}
+# Device Type: {data['device_type']}
+# Login Attempt: {data['login_attempt']}
 @app.route("/risk-score", methods=["GET","POST"])
 def risk_score():
     try:
@@ -129,10 +133,10 @@ def risk_score():
         print(data)
         input_data = {
             "amount": data['transaction_amount'],
-            "location": data['user_country'],
-            "ip": data['user_ip'],
-            "device_type": data['device_type'],
-            "login_attempt": 1
+            "location": 'Madhya Pradesh',
+            "ip": '190.83.143.174',
+            "device_type": 'Desktop',
+            "login_attempt": 5
             }
 
         # Validate input fields
@@ -195,15 +199,17 @@ def payments():
         session["trans_id"]=transaction_id
         geoip_data = simple_geoip.get_geoip_data()
         # print(geoip_data['ip'])
-        user_ip=geoip_data['ip']
-        user_country=geoip_data['location']['country']
+        # user_ip=geoip_data['ip']
+        user_ip="190.83.143.174"
+        user_country="Madhya Pradesh"
         status="NULL"
         transaction_duration = 300
         total_time = time.perf_counter() - g.start_time
         time_in_ms = int(total_time * 1000)
         transaction_duration=time_in_ms
         print(transaction_duration)
-        device_type= session['device_type']
+        # device_type= session['device_type']
+        device_type='Desktop'
         # print(risk_score)
         # risk_score=session['risk_score']
         # print(risk_score)
@@ -222,14 +228,14 @@ def payments():
 # Fraud Detection Model
 @app.route("/predict",methods=['GET','POST'])
 def predict():
-    # scaler = pickle.load(open("scaler.pkl", 'rb'))
-    
+    scaler = pickle.load(open("scaler.pkl", 'rb'))
     model = pickle.load(open("isolation_forest_model.pkl", 'rb'))
+    # model = pickle.load(open("isolation_forest_model (1).pkl", 'rb'))
     # print(session['trans_id'])
     data = transaction_log_find(session['trans_id'])
     # print(data)
     # Transaction Duration (ms)', 'Transaction Amount', 'Login Attempt
-    input_data = pd.DataFrame([{'Transaction Amount': int(data['transaction_amount']), 'Transaction Duration (ms)': int(data['transaction_duration']), 'Login Attempt': 1}])
+    input_data = pd.DataFrame([{'TransactionAmount': int(data['transaction_amount']), 'TransactionDuration': int(data['transaction_duration']),'AccountBalance': 3000.00, 'LoginAttempt': 3}])
     
     
 #     input_data = pd.DataFrame([
@@ -254,7 +260,7 @@ def predict():
     predictions = model.predict(input_scaled)
 
     # Interpret results
-    outlier_mapping = {1: 'Normal', -1: 'Potential Fraud'}
+    outlier_mapping = {1: 'Potential Fraud', -1: 'Normal'}
     labels = [outlier_mapping[p] for p in predictions]
     print(labels)
     print(labels[0])

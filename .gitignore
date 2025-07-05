@@ -3,7 +3,7 @@ __pycache__/
 *.py[codz]
 *$py.class
 sample1.ini
-
+.venv
 # C extensions
 *.so
 
