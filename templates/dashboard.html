@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class="poppins-semibold text-white text-center mb-3">Fraud Detection Dashboard </h1>
+<div class="row pt-md-4 m-3">
+<div class="col-md-4">
+   <div class="card-background p-md-3 h-100">
+    <div class="card-title text-center text-white fs-4">Total Transactions</div>
+       <div class="cardtext-background text-center text-white m-md-3 py-3">
+        <div class="fs-1">395</div>
+       </div>
+    <div class="card-title text-center text-white fs-4">Fradulent Transactions</div>
+       <div class="cardtext-background text-center text-white m-md-3 py-3">
+        <div class="fs-1">95</div>
+       </div>
+   </div>
+</div>
+<div class="col-md-8">
+ <div class="card-background p-md-3">
+     <div class="card-title text-center text-white fs-4">
+        Fradulent Transactions Over Time
+        <div class="cardtext-background text-center text-white m-md-3 p-md-4">
+        <!-- <div class="fs-1">395</div> -->
+         <!-- Embedding Bokeh components -->
+            <div class="px-3">
+               {{ div | safe }}
+            {{ script | safe }}
+            </div>
+       </div>
+     </div>
+   </div>
+</div>
+
+</div>
+<div class="row pt-md-4 m-3">
+<div class="col-md-8">
+   <div class="card-background p-md-3 h-100">
+    <div class="card-title text-center text-white fs-4">Recent Fraud Alert</div>
+       <div class="cardtext-background text-center text-white m-md-3 p-3">
+       <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">User</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">TX 1445</th>
+      <td>Mark0@</td>
+      <td>$400</td>
+      <td>Unusual Ad Time</td>
+    </tr>
+    <tr>
+      <th scope="row">TX 2897</th>
+      <td>Jacob327</td>
+      <td>$80000</td>
+      <td>Multiple Transaction</td>
+    </tr>
+    <tr>
+      <th scope="row">TX 39064</th>
+      <td>Larry334</td>
+      <td>$2057808</td>
+      <td>New Device and Location</td>
+    </tr>
+  </tbody>
+</table>
+       </div>
+   </div>
+</div>
+<div class="col-md-4">
+ <div class="card-background p-md-3">
+     <div class="card-title text-center text-white fs-4">
+        Details
+        <div class=" overflow-auto cardtext-background text-center text-white m-md-3 p-md-4">
+        <!-- <div class="fs-1">395</div> -->
+        Transaction Flagged ~~~
+        <div> High Value Transactions at 3AM from unfamiliar device</div>
+        
+       </div>
+       <div class="overflow-auto cardtext-background text-center text-white m-md-3 p-md-4">
+        <!-- <div class="fs-1">395</div> -->
+        Transaction Flagged ~~~
+        <div> High Value Transactions at 3AM from unfamiliar device</div>
+        
+       </div>
+       
+       
+     </div>
+   </div>
+</div>
+
+</div>
+{% endblock %}

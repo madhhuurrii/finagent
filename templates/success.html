@@ -1,0 +1,26 @@
+{% extends 'base1.html' %}
+{% block body %}
+<h1 class="poppins-semibold text-white text-center mb-3">Payment sucessful</h1>
+<div class="row pt-md-4 m-3 d-flex justify-content-center">
+<div class="col-md-6 d-flex justify-content-center">
+ <div class="card-background p-md-3">
+     <div class="card-title text-center text-white fs-4">
+       
+        <div class="cardtext-background text-center text-white m-md-3 p-md-4">
+        <!-- <div class="fs-1">395</div> -->
+         <!-- Embedding Bokeh components -->
+          <div class="">
+<!-- <i class="zmdi zmdi-smartphone-lock text-white fs-5"></i> -->
+ 
+<img src="{{url_for('static', filename='img/success.png')}}" class="img-fluid animate__animated animate__infinite animate__bounce animate__slower" alt="pays">
+
+ </div>
+ 
+       </div>
+     </div>
+   </div>
+</div>
+
+</div>
+
+{% endblock %}
