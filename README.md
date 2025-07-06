@@ -1,5 +1,7 @@
 # Fin_Agents
 An E2E Realtime Fraud Detection System with Agnetic Support and Analysis 
+Power BI:
+https://app.powerbi.com/links/azUZ0SMEy4?ctid=fe1d95a9-4ce1-41a5-8eab-6dd43aa26d9f&pbi_source=linkShare
 
 ## User Journey
 ### 1. Login/Register
